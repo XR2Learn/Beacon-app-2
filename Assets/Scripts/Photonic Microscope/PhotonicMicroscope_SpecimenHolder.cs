@@ -87,7 +87,7 @@ public class PhotonicMicroscope_SpecimenHolder : InteractiveObject {
     public void setActivation_of_SpecimenMovement (bool _ActivationStatus) {
 
         if (SpecimenOn != null)
-            SpecimenOn.GetComponent<MeshCollider> ().enabled = _ActivationStatus;
+            SpecimenOn.GetComponent<BoxCollider> ().enabled = _ActivationStatus;
     
     }
 
