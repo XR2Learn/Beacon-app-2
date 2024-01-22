@@ -16,7 +16,7 @@ public class Instrument : MonoBehaviour {
     public const bool locked = true;
     public const bool unlocked = false;
 
-    [HideInInspector]
+    // [HideInInspector]
     public GameObject ControlLamp, ControlMonitor, ControlPanel, ControlExtraUI;
 
     [HideInInspector]
@@ -77,10 +77,10 @@ public class Instrument : MonoBehaviour {
     // Start is called before the first frame update
     public virtual void Start () {
 
-        Ego = GameObject.Find ("Ego");
+        // Ego = GameObject.Find ("Ego");
 
-        if (ControlPanel != null)
-            setFocusValues ();
+        // if (ControlPanel != null)
+        //     setFocusValues ();
 
         Cable_State = connected; //Temporary, until we implement the socket
         PowerController_State = OFF;

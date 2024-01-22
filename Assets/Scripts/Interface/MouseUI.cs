@@ -498,7 +498,6 @@ public class MouseUI : MonoBehaviour {
     }
 
 
-
     void OnCollisionExit (Collision _collision) {
 
         if (!Rotating) {
@@ -506,10 +505,10 @@ public class MouseUI : MonoBehaviour {
             if (ObjectBeingDragged == gameObject)
                 BlockingObjects.Remove (_collision.gameObject);
 
+
         }
 
     }
-
 
 
     public static void setCursor (int _cursor_type) {
