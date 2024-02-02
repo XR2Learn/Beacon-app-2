@@ -46,7 +46,7 @@ TBA
 
 ## Contact
 
-dsmc2@eap.gr
+dsmc2 AT eap DOT gr
 
 ## License
 
