@@ -46,26 +46,26 @@ public enum Languages {
 
 public class OrdinaryNames {
 
-    public List<string> LanguageSpecificNames = new List<string> ();
+    public List<string> LanguageSpecificNames = new List<string>();
 
-    public OrdinaryNames (string _NameEn, string _NameGr) {
-        LanguageSpecificNames.Add (_NameEn);
-        LanguageSpecificNames.Add (_NameGr);
+    public OrdinaryNames(string _NameEn, string _NameGr) {
+        LanguageSpecificNames.Add(_NameEn);
+        LanguageSpecificNames.Add(_NameGr);
     }
 
 }
 
 
 
-public class MouseUI : MonoBehaviour {
+public class MouseUI: MonoBehaviour {
 
     static Texture2D FingerCursor, HandCursor, GrabCursor, ClickingFingerCursor, EyeCursor;
 
-    static Vector2 mouse_offset_for_finger = new Vector2 (9, 2);
-    static Vector2 mouse_offset_for_hand = new Vector2 (11, 3);
-    static Vector2 mouse_offset_for_grab = new Vector2 (7, 2);
-    static Vector2 mouse_offset_for_spin_arrow = new Vector2 (15, 10);
-    static Vector2 mouse_offset_for_eye = new Vector2 (12, 12);
+    static Vector2 mouse_offset_for_finger = new Vector2(9, 2);
+    static Vector2 mouse_offset_for_hand = new Vector2(11, 3);
+    static Vector2 mouse_offset_for_grab = new Vector2(7, 2);
+    static Vector2 mouse_offset_for_spin_arrow = new Vector2(15, 10);
+    static Vector2 mouse_offset_for_eye = new Vector2(12, 12);
 
     //cursor identifiers
     public const int hand_cursor = 0;
@@ -97,7 +97,7 @@ public class MouseUI : MonoBehaviour {
     public bool Impenetrable;
 
     string UserFriendlyName;
-  
+
     static Camera mainCamera;
 
     static float Camera_Z_Distance;
@@ -125,35 +125,35 @@ public class MouseUI : MonoBehaviour {
     #region Editor
 #if UNITY_EDITOR
 
-    [CustomEditor (typeof (MouseUI)), CanEditMultipleObjects]
-    public class MouseUI_Editor : Editor {
-        
-        public override void OnInspectorGUI () {
-            
-            base.OnInspectorGUI ();
+    [CustomEditor(typeof(MouseUI)), CanEditMultipleObjects]
+    public class MouseUI_Editor: Editor {
+
+        public override void OnInspectorGUI() {
+
+            base.OnInspectorGUI();
 
             MouseUI mouseUI = (MouseUI)target;
 
             if (mouseUI.Tag != Tags.NonInteractive) {
-                showAttributes (mouseUI);
-                assignBooleanValues (mouseUI);
+                showAttributes(mouseUI);
+                assignBooleanValues(mouseUI);
             }
         }
 
-        void showAttributes (MouseUI _mouseUI) {
+        void showAttributes(MouseUI _mouseUI) {
 
-            EditorGUILayout.BeginVertical ();
+            EditorGUILayout.BeginVertical();
 
-            _mouseUI.Pressable = EditorGUILayout.Toggle ("Pressable", _mouseUI.Pressable);
-            _mouseUI.Rotatable = EditorGUILayout.Toggle ("Rotatable", _mouseUI.Rotatable);
-            _mouseUI.Movable = EditorGUILayout.Toggle ("Movable", _mouseUI.Movable);
-            _mouseUI.Zoomable = EditorGUILayout.Toggle ("Zoomable", _mouseUI.Zoomable);
+            _mouseUI.Pressable = EditorGUILayout.Toggle("Pressable", _mouseUI.Pressable);
+            _mouseUI.Rotatable = EditorGUILayout.Toggle("Rotatable", _mouseUI.Rotatable);
+            _mouseUI.Movable = EditorGUILayout.Toggle("Movable", _mouseUI.Movable);
+            _mouseUI.Zoomable = EditorGUILayout.Toggle("Zoomable", _mouseUI.Zoomable);
 
-            EditorGUILayout.EndVertical ();
+            EditorGUILayout.EndVertical();
 
         }
 
-        void assignBooleanValues (MouseUI _mouseUI) {
+        void assignBooleanValues(MouseUI _mouseUI) {
             _mouseUI.Pressable = BooleanValues[_mouseUI.Tag][0];
             _mouseUI.Rotatable = BooleanValues[_mouseUI.Tag][1];
             _mouseUI.Movable = BooleanValues[_mouseUI.Tag][2];
@@ -167,13 +167,13 @@ public class MouseUI : MonoBehaviour {
 
 
     // Start is called before the first frame update
-    void Start () {
-        
-        FingerCursor = Resources.Load ("finger") as Texture2D;
-        HandCursor = Resources.Load ("hand") as Texture2D;
-        GrabCursor = Resources.Load ("grab") as Texture2D;
-        ClickingFingerCursor = Resources.Load ("clicking_finger") as Texture2D;
-        EyeCursor = Resources.Load ("eye") as Texture2D;
+    void Start() {
+
+        FingerCursor = Resources.Load("finger") as Texture2D;
+        HandCursor = Resources.Load("hand") as Texture2D;
+        GrabCursor = Resources.Load("grab") as Texture2D;
+        ClickingFingerCursor = Resources.Load("clicking_finger") as Texture2D;
+        EyeCursor = Resources.Load("eye") as Texture2D;
 
         Tooltip_MiddleX = 120;
 
@@ -182,7 +182,7 @@ public class MouseUI : MonoBehaviour {
         Tooltip_SizeY = 50;
         Tooltip_MiddleY = Tooltip_SizeY + 5;
 
-        TooltipBG = Resources.Load ("ui_tooltip") as Texture2D;
+        TooltipBG = Resources.Load("ui_tooltip") as Texture2D;
 
         mainCamera = Camera.main;
 
@@ -196,7 +196,7 @@ public class MouseUI : MonoBehaviour {
         ObjectHoveringOn = null;
         ObjectBeingDragged = null;
 
-        BlockingObjects = new List<GameObject> ();
+        BlockingObjects = new List<GameObject>();
 
         GameObjectMouseIsDown_On = null;
 
@@ -209,12 +209,12 @@ public class MouseUI : MonoBehaviour {
         MovableObjectHasJustBegunMovingVertically = false;
         VerticalMoveDetected = false;
 
-        UserFriendlyName = AttributedName (Tag);
+        UserFriendlyName = AttributedName(Tag);
 
     }
 
 
-    void OnMouseOver () {
+    void OnMouseOver() {
 
         VectorDistanceFromCamera = transform.position - mainCamera.transform.position;
 
@@ -229,13 +229,14 @@ public class MouseUI : MonoBehaviour {
                 if (GameObjectMouseIsDown_On == null && ObjectBeingDragged == null) {
 
                     if (Pressable)
-                        setCursor (finger_cursor);
+                        setCursor(finger_cursor);
                     else if (Zoomable)
-                        setCursor (eye_cursor);
+                        setCursor(eye_cursor);
                     else if (Rotatable || Movable)
-                        setCursor (hand_cursor);
+                        setCursor(hand_cursor);
 
-                } else if (GameObjectMouseIsDown_On != gameObject) {
+                }
+                else if (GameObjectMouseIsDown_On != gameObject) {
 
                     gameObject2 = gameObject;
 
@@ -244,11 +245,11 @@ public class MouseUI : MonoBehaviour {
             }
 
         }
-    
+
     }
 
 
-    void OnMouseExit () {
+    void OnMouseExit() {
 
         if (Tag != Tags.NonInteractive) {
 
@@ -257,9 +258,10 @@ public class MouseUI : MonoBehaviour {
                 ObjectHoveringOn = null;
                 Text_for_Tooltip = null;
 
-                resetCursor ();
+                resetCursor();
 
-            } else
+            }
+            else
                 gameObject2 = null;
 
         }
@@ -267,7 +269,7 @@ public class MouseUI : MonoBehaviour {
     }
 
 
-    void OnMouseDown () {
+    void OnMouseDown() {
 
         if (Tag != Tags.NonInteractive) {
 
@@ -277,32 +279,35 @@ public class MouseUI : MonoBehaviour {
 
                 if (Movable) {
 
-                    Camera_Z_Distance = mainCamera.WorldToScreenPoint (transform.position).z;
+                    Camera_Z_Distance = mainCamera.WorldToScreenPoint(transform.position).z;
                     //it needs to be calucated here, since the object will be being moved at this
                     //camera distance
 
-                    setCursor (grab_cursor);
+                    setCursor(grab_cursor);
 
-                    if (GetComponent<InteractiveObject> ().Place == null) //not to straighten objects who are in/on other objects and have got new but legit rotation
-                        GetComponent<MovableObject> ().restoreUprightRotation ();                    
-                } else if (Rotatable) {
+                    if (GetComponent<InteractiveObject>().Place == null) //not to straighten objects who are in/on other objects and have got new but legit rotation
+                        GetComponent<MovableObject>().restoreUprightRotation();
+                }
+                else if (Rotatable) {
 
                     Coords_for_FrozenToolip =
-                        new Vector2 (occurence.mousePosition.x, occurence.mousePosition.y);
+                        new Vector2(occurence.mousePosition.x, occurence.mousePosition.y);
 
-                    setCursor (grab_cursor);
+                    setCursor(grab_cursor);
 
-                } else if (Pressable) {
+                }
+                else if (Pressable) {
 
-                    GetComponent<InteractiveObject> ().press ();
+                    GetComponent<InteractiveObject>().press();
 
-                    setCursor (clicking_finger_cursor);
+                    setCursor(clicking_finger_cursor);
 
-                } else if (Zoomable) {
+                }
+                else if (Zoomable) {
 
-                    GetComponent<InteractiveObject> ().zoom ();
+                    GetComponent<InteractiveObject>().zoom();
 
-                    resetCursor ();
+                    resetCursor();
 
                 }
 
@@ -313,7 +318,7 @@ public class MouseUI : MonoBehaviour {
     }
 
 
-    void OnMouseDrag () {
+    void OnMouseDrag() {
 
         if (Tag != Tags.NonInteractive && GameObjectMouseIsDown_On == gameObject) { /* so that you won't able to drag an object if you are not close enough to it */
 
@@ -322,8 +327,8 @@ public class MouseUI : MonoBehaviour {
                 if (Rotatable || Movable)
                     ObjectBeingDragged = gameObject;
 
-                float mouse_dx = Input.GetAxis ("Mouse X");
-                float mouse_dy = Input.GetAxis ("Mouse Y");
+                float mouse_dx = Input.GetAxis("Mouse X");
+                float mouse_dy = Input.GetAxis("Mouse Y");
 
                 if (Movable && (MovableObjectIsMoving
                     || (mouse_dx != 0F || mouse_dy != 0F))) {
@@ -332,17 +337,17 @@ public class MouseUI : MonoBehaviour {
 
                     MovableObjectIsMoving = true;
 
-                    freezeObjectRotation ();
+                    freezeObjectRotation();
 
-                    Vector3 Screen_Position = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, Camera_Z_Distance); //added z axis to screen point
+                    Vector3 Screen_Position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera_Z_Distance); //added z axis to screen point
 
-                    Vector3 New_World_Position = mainCamera.ScreenToWorldPoint (Screen_Position);
+                    Vector3 New_World_Position = mainCamera.ScreenToWorldPoint(Screen_Position);
 
                     transform.position = New_World_Position;
 
-                    if (!MovableObjectHasJustBegunMovingVertically && 
+                    if (!MovableObjectHasJustBegunMovingVertically &&
                         mouse_dy != 0F) {
-                    
+
                         MovableObjectHasJustBegunMovingVertically = true;
 
                         if (mouse_dy < 0F)
@@ -350,58 +355,59 @@ public class MouseUI : MonoBehaviour {
 
                     }
 
-                    if (GetComponent<InteractiveObject> ().Place != null)
-                        GetComponent<InteractiveObject> ().Place.GetComponent<InteractiveObject> ().evacuate (gameObject);
+                    if (GetComponent<InteractiveObject>().Place != null)
+                        GetComponent<InteractiveObject>().Place.GetComponent<InteractiveObject>().evacuate(gameObject);
 
-                } else if (Rotatable && occurence.isMouse) {
+                }
+                else if (Rotatable && occurence.isMouse) {
                     //without "occurence.isMouse == true", object is not properly rotated
 
                     Rotating = true;
 
                     Vector2 dv = occurence.delta;
 
-                    GetComponent<InteractiveObject> ().pivot (dv);
+                    GetComponent<InteractiveObject>().pivot(dv);
 
                 }
 
             }
-        
+
         }
-    
+
     }
 
 
-    void OnMouseUp () {
+    void OnMouseUp() {
 
         bool ObjectedAllowedToRoll;
 
         ObjectedAllowedToRoll = (Movable) ? true : false;
 
         if (ObjectBeingDragged == gameObject && gameObject2 != null && gameObject2 != gameObject
-            && !Rotatable && !Pressable && GetComponent<InteractiveObject> ()) {
+            && !Rotatable && !Pressable && GetComponent<InteractiveObject>()) {
             //gameObject2 !== gameObject needs to be checked because with OnMouseDrag (), gameObject2 may become equal to gameObject and ObjectBeingDragged
 
-            bool JointUse_Result = GetComponent<MouseUI> ().tryCombining_With (gameObject2);
+            bool JointUse_Result = GetComponent<MouseUI>().tryCombining_With(gameObject2);
 
             if (JointUse_Result)
                 ObjectedAllowedToRoll = false;
 
-        } else if (Rotating) {
+        }
+        else if (Rotating) {
 
-            GetComponent<InteractiveObject> ().done_pivoting ();
+            GetComponent<InteractiveObject>().done_pivoting();
 
             Rotating = false;
 
         }
 
         if (ObjectedAllowedToRoll)
-            GetComponent<MouseUI> ().letObjectRoll ();
+            GetComponent<MouseUI>().letObjectRoll();
 
         MovableObjectHasJustBegunMovingVertically = false;
         VerticalMoveDetected = false;
 
         MovableObjectIsMoving = false;
-
         GameObjectMouseIsDown_On = null;
 
         ObjectHoveringOn = null; //it needs to be set to null every time, otherwise the tooltip may continue after done rotating a knob or moving an object
@@ -409,33 +415,35 @@ public class MouseUI : MonoBehaviour {
         ObjectBeingDragged = null;
         gameObject2 = null;
 
-        BlockingObjects.Clear ();
+        BlockingObjects.Clear();
 
-        resetCursor ();
+        resetCursor();
 
     }
 
 
-    bool tryCombining_With (GameObject _GameObject2) {
+    bool tryCombining_With(GameObject _GameObject2) {
 
-        Values_After_JointUse ResultValues = 
-            _GameObject2.GetComponent<InteractiveObject> ().use_with (gameObject);
+        Debug.Log($"MouseUI.tryCombiningWith, this: {gameObject.name}, with: {_GameObject2.name}");
+
+        Values_After_JointUse ResultValues =
+            _GameObject2.GetComponent<InteractiveObject>().use_with(gameObject);
 
         if (ResultValues.JointUse_TookPlace) {
 
-            GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeAll;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
             //gameObject2's handling needs to be BEFORE gameObject1's because gameObject1 might be child of gameObject2
             if (ResultValues.gameObject2_NewPlace != null)
-                _GameObject2.GetComponent<InteractiveObject> ().Place = ResultValues.gameObject2_NewPlace;
+                _GameObject2.GetComponent<InteractiveObject>().Place = ResultValues.gameObject2_NewPlace;
 
-            _GameObject2.GetComponent<MouseUI> ().setInteractivity (
+            _GameObject2.GetComponent<MouseUI>().setInteractivity(
                 ResultValues.gameObject2_NewInteractivity);
 
             if (ResultValues.gameObject1_NewPlace != null)
-                gameObject.GetComponent<InteractiveObject> ().Place = ResultValues.gameObject1_NewPlace;
+                gameObject.GetComponent<InteractiveObject>().Place = ResultValues.gameObject1_NewPlace;
 
-            GetComponent<MouseUI> ().setInteractivity (
+            GetComponent<MouseUI>().setInteractivity(
                 ResultValues.gameObject1_NewInteractivity);
 
         }
@@ -445,26 +453,26 @@ public class MouseUI : MonoBehaviour {
     }
 
 
-    void freezeObjectRotation () {
-        GetComponent<Rigidbody> ().constraints = RigidbodyConstraints.FreezeRotation;
+    void freezeObjectRotation() {
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
     }
 
 
-    void letObjectRoll () {
-        GetComponent<Rigidbody> ().freezeRotation = false;
+    void letObjectRoll() {
+        GetComponent<Rigidbody>().freezeRotation = false;
     }
 
 
-    private void OnCollisionStay (Collision _collision) {
+    private void OnCollisionStay(Collision _collision) {
 
         if (VerticalMoveDetected) {
 
             if (ObjectBeingDragged == gameObject) {
 
-                if (_collision.gameObject.GetComponent<MouseUI> () && _collision.gameObject.GetComponent<MouseUI> ().Impenetrable &&
-                    !BlockingObjects.Contains (_collision.gameObject)) {
+                if (_collision.gameObject.GetComponent<MouseUI>() && _collision.gameObject.GetComponent<MouseUI>().Impenetrable &&
+                    !BlockingObjects.Contains(_collision.gameObject)) {
 
-                    BlockingObjects.Add (_collision.gameObject);
+                    BlockingObjects.Add(_collision.gameObject);
 
 
                 }
@@ -474,36 +482,36 @@ public class MouseUI : MonoBehaviour {
             VerticalMoveDetected = false;
 
         }
-    
+
     }
 
 
-    void OnCollisionEnter (Collision _collision) {
+    void OnCollisionEnter(Collision _collision) {
 
         if (!Rotating) {
 
             if (ObjectBeingDragged == gameObject) {
 
-                if (_collision.gameObject.GetComponent<MouseUI> () && _collision.gameObject.GetComponent<MouseUI> ().Impenetrable &&
-                    !BlockingObjects.Contains (_collision.gameObject)) {
+                if (_collision.gameObject.GetComponent<MouseUI>() && _collision.gameObject.GetComponent<MouseUI>().Impenetrable &&
+                    !BlockingObjects.Contains(_collision.gameObject)) {
 
-                    BlockingObjects.Add (_collision.gameObject);
+                    BlockingObjects.Add(_collision.gameObject);
 
                 }
-            
+
             }
-        
+
         }
 
     }
 
 
-    void OnCollisionExit (Collision _collision) {
+    void OnCollisionExit(Collision _collision) {
 
         if (!Rotating) {
 
             if (ObjectBeingDragged == gameObject)
-                BlockingObjects.Remove (_collision.gameObject);
+                BlockingObjects.Remove(_collision.gameObject);
 
 
         }
@@ -511,83 +519,83 @@ public class MouseUI : MonoBehaviour {
     }
 
 
-    public static void setCursor (int _cursor_type) {
+    public static void setCursor(int _cursor_type) {
 
         switch (_cursor_type) {
             case hand_cursor:
-                Cursor.SetCursor (HandCursor, mouse_offset_for_hand, CursorMode.Auto);
+                Cursor.SetCursor(HandCursor, mouse_offset_for_hand, CursorMode.Auto);
                 break;
             case grab_cursor:
-                Cursor.SetCursor (GrabCursor, mouse_offset_for_grab, CursorMode.Auto);
+                Cursor.SetCursor(GrabCursor, mouse_offset_for_grab, CursorMode.Auto);
                 break;
             case finger_cursor:
-                Cursor.SetCursor (FingerCursor, mouse_offset_for_finger, CursorMode.Auto);
+                Cursor.SetCursor(FingerCursor, mouse_offset_for_finger, CursorMode.Auto);
                 break;
             case clicking_finger_cursor:
-                Cursor.SetCursor (ClickingFingerCursor, mouse_offset_for_finger, CursorMode.Auto);
+                Cursor.SetCursor(ClickingFingerCursor, mouse_offset_for_finger, CursorMode.Auto);
                 break;
             case spin_arrow_cursor:
-                Cursor.SetCursor (GrabCursor, mouse_offset_for_spin_arrow, CursorMode.Auto);
+                Cursor.SetCursor(GrabCursor, mouse_offset_for_spin_arrow, CursorMode.Auto);
                 break;
             case eye_cursor:
-                Cursor.SetCursor (EyeCursor, mouse_offset_for_eye, CursorMode.Auto);
+                Cursor.SetCursor(EyeCursor, mouse_offset_for_eye, CursorMode.Auto);
                 break;
         }
 
     }
 
 
-    public static void resetCursor () {
-        Cursor.SetCursor (null, Vector2.zero, CursorMode.Auto);
+    public static void resetCursor() {
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
 
-    public static void callOnGUI () {
-        
+    public static void callOnGUI() {
+
         occurence = Event.current;
 
         if (!Rotating && ObjectHoveringOn != null && ObjectBeingDragged != ObjectHoveringOn &&
-            ObjectHoveringOn.GetComponent<MouseUI> ().Tag != Tags.NonInteractive)
-            DisplayTooltip ();
+            ObjectHoveringOn.GetComponent<MouseUI>().Tag != Tags.NonInteractive)
+            DisplayTooltip();
         else if (Rotating)
-            DisplayFrozenTooltip ();
+            DisplayFrozenTooltip();
 
     }
 
 
-    static void DisplayTooltip () {
-            GUI.skin.box.alignment = TextAnchor.MiddleCenter;
-            GUI.skin.box.normal.background = TooltipBG;
-            GUI.skin.box.fontSize = 16;
-            GUI.skin.box.normal.textColor = Color.yellow;
-            GUI.backgroundColor = new Color (0F, 0F, 0F, 0.3F);
-            GUI.Box (new Rect (occurence.mousePosition.x - Tooltip_MiddleX,
-                occurence.mousePosition.y - Tooltip_MiddleY, Tooltip_SizeX, Tooltip_SizeY),
-                Text_for_Tooltip);
-    }
-
-    static void DisplayFrozenTooltip () {
+    static void DisplayTooltip() {
         GUI.skin.box.alignment = TextAnchor.MiddleCenter;
         GUI.skin.box.normal.background = TooltipBG;
         GUI.skin.box.fontSize = 16;
         GUI.skin.box.normal.textColor = Color.yellow;
-        GUI.backgroundColor = new Color (0F, 0F, 0F, 0.3F);
-        GUI.Box (new Rect (Coords_for_FrozenToolip.x - Tooltip_MiddleX,
+        GUI.backgroundColor = new Color(0F, 0F, 0F, 0.3F);
+        GUI.Box(new Rect(occurence.mousePosition.x - Tooltip_MiddleX,
+            occurence.mousePosition.y - Tooltip_MiddleY, Tooltip_SizeX, Tooltip_SizeY),
+            Text_for_Tooltip);
+    }
+
+    static void DisplayFrozenTooltip() {
+        GUI.skin.box.alignment = TextAnchor.MiddleCenter;
+        GUI.skin.box.normal.background = TooltipBG;
+        GUI.skin.box.fontSize = 16;
+        GUI.skin.box.normal.textColor = Color.yellow;
+        GUI.backgroundColor = new Color(0F, 0F, 0F, 0.3F);
+        GUI.Box(new Rect(Coords_for_FrozenToolip.x - Tooltip_MiddleX,
                 Coords_for_FrozenToolip.y - Tooltip_MiddleY, Tooltip_SizeX, Tooltip_SizeY),
                 Text_for_Tooltip);
     }
- 
 
-    public void setInteractivity (bool _InteractivityState) {
 
-        for (int i = 0; i < GetComponents<BoxCollider> ().Length; i++)
-            GetComponents<BoxCollider> ()[i].enabled = _InteractivityState;
+    public void setInteractivity(bool _InteractivityState) {
+
+        for (int i = 0; i < GetComponents<BoxCollider>().Length; i++)
+            GetComponents<BoxCollider>()[i].enabled = _InteractivityState;
 
         //if (!_object.GetComponent<pipette> ()) {
 
         for (int i = 0; i < transform.childCount; i++) {
 
-            transform.GetChild (i).GetComponent<MouseUI> ().setInteractivity (_InteractivityState);
+            transform.GetChild(i).GetComponent<MouseUI>().setInteractivity(_InteractivityState);
 
         }
 
@@ -619,13 +627,13 @@ public class MouseUI : MonoBehaviour {
         {Tags.Cap, new OrdinaryNames ("CAP", " ¡–¡ …")}
     };
 
-    public static string AttributedName (Tags _NameTag) {
+    public static string AttributedName(Tags _NameTag) {
         return NameAttribution[_NameTag].LanguageSpecificNames[(int)Specs.Language];
     }
 
 
-    public static readonly Dictionary<Tags, List<bool>> BooleanValues = 
-        new Dictionary<Tags, List<bool>> () {
+    public static readonly Dictionary<Tags, List<bool>> BooleanValues =
+        new Dictionary<Tags, List<bool>>() {
         //1st: Pressable; 2nd: Rotatable; 3rd: Movable; 4th: Zoomable
         {Tags.Erlenmeyer500ml, new List<bool> {false,false,true,false}},
         {Tags.HeatKnob, new List<bool> {false,true,false,false}},

@@ -2,6 +2,15 @@ using com.ganast.log.unity;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+
+//
+// TODO: MERGE WITH, or CLEARLY SEPARATE FROM, VlabXRInteractiveObject which should in turn extend or cooperate
+// with XRGrabInteractable or something (must combine functionality of grabbagles and not grabbables) !!! Good
+// idea seems to be extensions of XRBaseInteractable for clicks/turns, XRGrabInteractable for moving around and
+// combining, etc., each with its own event handling so that, as an added benefit, we won't have to manually set
+// up event callbacks to other handler scripts on each and every interactable.
+//
+
 namespace com.ganast.xr2learn.vlab {
 
     /**
