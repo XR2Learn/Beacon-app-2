@@ -177,6 +177,7 @@ namespace com.ganast.xr2learn.vlab {
 
             if (dt < clickThreshold) {
                 target.press();
+                target.zoom();
                 Log.Message(this, "OnSelectExited", "pressed, target: " + name);
             }
 

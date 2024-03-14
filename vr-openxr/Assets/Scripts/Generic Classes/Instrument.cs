@@ -22,7 +22,7 @@ public class Instrument : MonoBehaviour {
     [HideInInspector]
     public bool View;
 
-    public static GameObject Ego;
+    // public static GameObject Ego;
     public static EgoController Ego_Controller;
 
     [HideInInspector]
@@ -93,7 +93,7 @@ public class Instrument : MonoBehaviour {
 
         View = unlocked;
 
-        Ego_Controller = Ego.GetComponent<EgoController> ();
+        // Ego_Controller = Ego.GetComponent<EgoController> ();
 
         float Orientation = Orientation_in_3D_Space ();
 
@@ -136,13 +136,17 @@ public class Instrument : MonoBehaviour {
 
 
     public virtual void lockView () {
+        /*
         Ego_Controller.setMode (Focus_Mode, gameObject, transform.localPosition.x + dx,
             transform.localPosition.z + dz, Y_Angle, Focus_Camera_RotX, Focus_Field_of_View);
+        */
     }
 
 
     public virtual void unlockView () {
+        /*
         Ego_Controller.setMode (Modes.Navigation);
+        */
     }
 
     public virtual void updateFeedback_from_Cable (bool _New_Cable_State) {
