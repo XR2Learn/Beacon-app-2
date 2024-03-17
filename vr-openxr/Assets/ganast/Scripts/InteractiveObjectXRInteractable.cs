@@ -151,6 +151,7 @@ namespace com.ganast.xr2learn.vlab {
 
             base.OnSelectEntered(args);
 
+            TooltipManager.GetTooltipManager().SetTooltipVisible(false);
             TooltipManager.GetTooltipManager().Freeze();
 
             interactor = args.interactorObject;
@@ -190,6 +191,7 @@ namespace com.ganast.xr2learn.vlab {
             interactor = null;
 
             TooltipManager.GetTooltipManager().Unfreeze();
+            TooltipManager.GetTooltipManager().SetTooltipVisible(false);
         }
 
         /**
