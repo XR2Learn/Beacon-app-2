@@ -20,3 +20,4 @@ V-Lab TODOs draft
 - Snap turning.
 - In-game UI, HUD-like, options may include restart scenario, instructions, credits, etc.
 - Consistent and complete logging.
+- Tablet-like handheld microscopy image display panel on left hand.
