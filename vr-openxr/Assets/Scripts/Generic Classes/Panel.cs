@@ -11,7 +11,8 @@ public class Panel : InteractiveObject {
     public override void Start () {
     }
 
-    public override void zoom () {        
+    public override void zoom () {
+        Debug.Log("[Panel] zoom");
         ControlInstrument.GetComponent<Instrument> (). toggleView ();
     }
 

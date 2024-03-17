@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+
 using Unity.Collections.LowLevel.Unsafe;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +26,7 @@ public class LogarithmicBase {
 }
 
 
-public class PhotonicMicroscope_MicroscopingUI : ExtraUI {
+public class PhotonicMicroscope_MicroscopingUI: ExtraUI {
 
     private const int Speed_X = 14;
     private const int Speed_Y = 16;
@@ -61,16 +63,16 @@ public class PhotonicMicroscope_MicroscopingUI : ExtraUI {
     float OverallBlurring;
 
 
-    public override void Start () {
+    public override void Start() {
 
-        Lamp_OFF_Brightness = ControlLamp.GetComponent<PhotonicMicroscope_Lamp> ().OFF_Brightness;
+        Lamp_OFF_Brightness = ControlLamp.GetComponent<PhotonicMicroscope_Lamp>().OFF_Brightness;
 
         Slope = (LightFG_Opacity_for_Max_ON_Brightness - LightFG_Opacity_for_Min_ON_Brightness)
-            / (ControlLamp.GetComponent<PhotonicMicroscope_Lamp> ().Max_ON_Brightness -
-            ControlLamp.GetComponent<PhotonicMicroscope_Lamp> ().Min_ON_Brightness);
+            / (ControlLamp.GetComponent<PhotonicMicroscope_Lamp>().Max_ON_Brightness -
+            ControlLamp.GetComponent<PhotonicMicroscope_Lamp>().Min_ON_Brightness);
 
-        Constant = LightFG_Opacity_for_Max_ON_Brightness - 
-            Slope * ControlLamp.GetComponent<PhotonicMicroscope_Lamp> ().Max_ON_Brightness;
+        Constant = LightFG_Opacity_for_Max_ON_Brightness -
+            Slope * ControlLamp.GetComponent<PhotonicMicroscope_Lamp>().Max_ON_Brightness;
 
         X = 0;
         Y = 0;
@@ -78,29 +80,30 @@ public class PhotonicMicroscope_MicroscopingUI : ExtraUI {
         //OldFocus = 4; //just for initilization purposes
         //Focus = OldFocus;
 
-        setImage_for_Specimen (null);
+        setImage_for_Specimen(null);
 
     }
 
-    public void setImage_for_Specimen (GameObject _Specimen) {
+    public void setImage_for_Specimen(GameObject _Specimen) {
 
         if (_Specimen != null) {
 
             //_Specimen can only be Slide
-            ImageClearFG.GetComponent<Image> ().sprite = _Specimen.GetComponent<Slide> ().ImageClear;
-            ImageBlurryFG.GetComponent<Image> ().sprite = _Specimen.GetComponent<Slide> ().ImageBlurry;
+            ImageClearFG.GetComponent<Image>().sprite = _Specimen.GetComponent<Slide>().ImageClear;
+            ImageBlurryFG.GetComponent<Image>().sprite = _Specimen.GetComponent<Slide>().ImageBlurry;
 
-        } else {
+        }
+        else {
 
-            ImageClearFG.GetComponent<Image> ().sprite = null;
-            ImageBlurryFG.GetComponent<Image> ().sprite = null;
+            ImageClearFG.GetComponent<Image>().sprite = null;
+            ImageBlurryFG.GetComponent<Image>().sprite = null;
 
         }
 
     }
 
 
-    public void updateFocus (int _NewFocus) {
+    public void updateFocus(int _NewFocus) {
 
         if (Focus == 0)
             OldFocus = 4; //the function is also called from revolving nosepiece in the begging of the game, so we need to give OldFocus a random non-zero value so that we won't have division by zero later on
@@ -110,44 +113,44 @@ public class PhotonicMicroscope_MicroscopingUI : ExtraUI {
         Focus = _NewFocus;
 
         float NewScale = 0.125F * Focus; // = (focus / 4 ) * 1/2
-        ImageClearFG.transform.localScale = new Vector3 (NewScale, NewScale);
+        ImageClearFG.transform.localScale = new Vector3(NewScale, NewScale);
 
         X = X * Focus / OldFocus;
         Y = Y * Focus / OldFocus;
 
-        ImageClearFG.transform.localPosition = new Vector3 (X, Y);
+        ImageClearFG.transform.localPosition = new Vector3(X, Y);
 
-        updateOverallBlurring ();
+        updateOverallBlurring();
 
-//		print (ImageClear.transform.localPosition);
+        //		print (ImageClear.transform.localPosition);
 
     }
 
 
-    public void moveImage (Axes _axis, int _direction) {
+    public void moveImage(Axes _axis, int _direction) {
 
         if (_axis == Axes.X_Axis)
             X += _direction * Focus * Speed_X;
         else //if (_axis == Axes.Y_Axis)
             Y += _direction * Focus * Speed_Y;
 
-        ImageClearFG.transform.localPosition = new Vector3 (X, Y);
+        ImageClearFG.transform.localPosition = new Vector3(X, Y);
 
-//		print (ImageClear.transform.localPosition);
+        //		print (ImageClear.transform.localPosition);
 
     }
 
-    public void setVisibility_of_SpecimenImage (bool _Visibility) {
-        ControlWhiteBG.SetActive (_Visibility);
+    public void setVisibility_of_SpecimenImage(bool _Visibility) {
+        ControlWhiteBG.SetActive(_Visibility);
     }
 
 
-    public override void updateLightBrightness (float _LightBrightness) {
-        ControlLightFG.GetComponent<Image> ().color = new Color (1F, 1F, 1F, LightFG_Opacity (_LightBrightness));
+    public override void updateLightBrightness(float _LightBrightness) {
+        ControlLightFG.GetComponent<Image>().color = new Color(1F, 1F, 1F, LightFG_Opacity(_LightBrightness));
     }
 
 
-    float LightFG_Opacity (float _Brightness) {
+    float LightFG_Opacity(float _Brightness) {
 
         if (_Brightness == Lamp_OFF_Brightness)
             return 1F;
@@ -157,59 +160,61 @@ public class PhotonicMicroscope_MicroscopingUI : ExtraUI {
     }
 
 
-    public void updateIrisDiameter (float _IrisDiameter) {
-        ControlIrisFG.GetComponent<Image> ().color = new Color (0F, 0F, 0F, 1F - _IrisDiameter);
+    public void updateIrisDiameter(float _IrisDiameter) {
+        ControlIrisFG.GetComponent<Image>().color = new Color(0F, 0F, 0F, 1F - _IrisDiameter);
     }
 
 
-    public void updateCondenserBlurring (float _Factor) {
+    public void updateCondenserBlurring(float _Factor) {
 
         CondenserBlurring = _Factor;
 
-//      print ("CondenserBlurring = " + CondenserBlurring);
+        //      print ("CondenserBlurring = " + CondenserBlurring);
 
-        updateOverallBlurring ();
+        updateOverallBlurring();
 
     }
 
 
-    public void updateStageBaseBlurring (float _Factor) {
+    public void updateStageBaseBlurring(float _Factor) {
 
         StageBaseBlurring = _Factor;
 
-//      print ("StageBase Blurring = " + StageBaseBlurring);
+        //      print ("StageBase Blurring = " + StageBaseBlurring);
 
-        updateOverallBlurring ();
+        updateOverallBlurring();
 
     }
 
 
-    public void updateOcularBlurring (OcularPosition _Position, float _Factor) {
-        
+    public void updateOcularBlurring(OcularPosition _Position, float _Factor) {
+
+        Debug.Log($"[PhotonicMicroscope_MicroscopingUI] updateOcularBlurring, factor: {_Factor}");
+
         if (_Position == OcularPosition.Left)
             LeftOcularBlurring = _Factor;
         else //if (_Position == OcularPosition.Right)
             RightOcularBlurring = _Factor;
 
-//      print ("Left Ocular Blurring = " + LeftOcularBlurring);
-//      print ("Right Ocular Blurring = " + RightOcularBlurring);
+        //      print ("Left Ocular Blurring = " + LeftOcularBlurring);
+        //      print ("Right Ocular Blurring = " + RightOcularBlurring);
 
-        updateOverallBlurring ();
+        updateOverallBlurring();
 
     }
 
 
-    void updateOverallBlurring () {
-        
+    void updateOverallBlurring() {
+
         OverallBlurring = 0.05F * (2.5F * LeftOcularBlurring + 2.5F * RightOcularBlurring + 8.5F * StageBaseBlurring + 6.5F * CondenserBlurring);
         // 2.5 + 2.5 + 8.5 + 6.5 = 20; 1/20 = 0.05
 
-        OverallBlurring = Mathf.Min (OverallBlurring, 1F);
+        OverallBlurring = Mathf.Min(OverallBlurring, 1F);
 
-//      print ("Overall Blurring = " + OverallBlurring);
+        //      print ("Overall Blurring = " + OverallBlurring);
 
-        ImageBlurryFG.GetComponent<Image> ().color = new Color (1F, 1F, 1F, OverallBlurring);
-    
+        ImageBlurryFG.GetComponent<Image>().color = new Color(1F, 1F, 1F, OverallBlurring);
+
     }
 
 }

@@ -56,21 +56,21 @@ public class PhotonicMicroscope_FocusKnob: Knob {
 
     public override void rotate(int _direction) {
 
-        Debug.Log(ControlMicroscope.GetComponent<PhotonicMicroscope>().Cable_State);
+        // Debug.Log(ControlMicroscope.GetComponent<PhotonicMicroscope>().Cable_State);
 
         if (ControlMicroscope.GetComponent<PhotonicMicroscope>().Cable_State == connected) {
 
             if (_direction < 0F &&
                 ControlStageBase.GetComponent<PhotonicMicroscope_StageBase>().Height < PhotonicMicroscope_StageBase.MaxHeight) {
                 setAngle(Angle - da);
-                Debug.Log(da);
+                // Debug.Log(da);
                 ControlStageBase.GetComponent<PhotonicMicroscope_StageBase>().move(da, Multiplier);
             }
             else if (_direction > 0F &&
               ControlStageBase.GetComponent<PhotonicMicroscope_StageBase>().Height >
               PhotonicMicroscope_StageBase.MinHeight) {
                 setAngle(Angle + da);
-                Debug.Log(da);
+                // Debug.Log(da);
                 ControlStageBase.GetComponent<PhotonicMicroscope_StageBase>().move(-da, Multiplier);
             }
         }

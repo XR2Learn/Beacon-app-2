@@ -122,6 +122,8 @@ public class Instrument : MonoBehaviour {
 
     public void toggleView () {
 
+        Debug.Log("[Instrument] toggleView");
+
         if (View == unlocked)
             lockView ();
         else

@@ -13,6 +13,7 @@ public class ExtraUI : MonoBehaviour {
     }
 
     public void setActivationStatus (bool _NewActivationStatus) {
+        Debug.Log($"[ExtraUI] ({name}) setActivationStatus({_NewActivationStatus})");
         ControlCanvas.SetActive (_NewActivationStatus);
     }
 

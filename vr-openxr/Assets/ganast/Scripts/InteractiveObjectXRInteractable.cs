@@ -180,6 +180,9 @@ namespace com.ganast.xr2learn.vlab {
                 target.zoom();
                 Log.Message(this, "OnSelectExited", "pressed, target: " + name);
             }
+            else {
+                target.done_pivoting();
+            }
 
             dt = 0.0f;
 

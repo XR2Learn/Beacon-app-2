@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public enum OcularPosition {
@@ -8,7 +9,7 @@ public enum OcularPosition {
 }
 
 
-public class PhotonicMicroscope_Ocular : Knob {
+public class PhotonicMicroscope_Ocular: Knob {
 
     public GameObject ControlMicroscopingUI;
 
@@ -26,45 +27,45 @@ public class PhotonicMicroscope_Ocular : Knob {
 
     const float dh = 0.0001F;
 
-    void setHeight (float _Height) {
+    void setHeight(float _Height) {
 
         Height = _Height;
 
-        float Factor = Mathf.Log (Mathf.Abs (Height - PerfectHeight) + 1, LogBase);
+        float Factor = Mathf.Log(Mathf.Abs(Height - PerfectHeight) + 1, LogBase);
 
-        ControlMicroscopingUI.GetComponent<PhotonicMicroscope_MicroscopingUI> ().updateOcularBlurring (Position, Factor);
-
+        ControlMicroscopingUI.GetComponent<PhotonicMicroscope_MicroscopingUI>().updateOcularBlurring(Position, Factor);
     }
 
     // Use this for initialization
-    public override void Start () {
+    public override void Start() {
 
-        base.Start ();
+        base.Start();
 
         da = 6F;
 
-        setHeight (MinHeight);
+        setHeight(MinHeight);
 
     }
 
-    public override void rotate (int _direction) {
+    public override void rotate(int _direction) {
 
         if (_direction < 0F && Height + dh <= MaxHeight) {
 
-             transform.Rotate (0F, -da, 0F);
-            transform.Translate (0F, dh, 0F);
+            transform.Rotate(0F, -da, 0F);
+            transform.Translate(0F, dh, 0F);
 
-            setHeight (Height + dh);
-
-        } else if (_direction > 0F && Height - dh >= MinHeight) {
-
-            transform.Rotate (0F, da, 0F);
-            transform.Translate (0F, -dh, 0F);
-
-            setHeight (Height - dh);
+            setHeight(Height + dh);
 
         }
-    
+        else if (_direction > 0F && Height - dh >= MinHeight) {
+
+            transform.Rotate(0F, da, 0F);
+            transform.Translate(0F, -dh, 0F);
+
+            setHeight(Height - dh);
+
+        }
+
     }
 
 }

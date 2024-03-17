@@ -7,6 +7,7 @@ public class PhotonicMicroscope_OcularLens : Panel {
     public GameObject OtherLens;
 
     public override void updateZoomability (bool _NewZoomability) {
+        Debug.Log("[PhotonicMicroscope_OcularLens] updateZoomability");
         base.updateZoomability (_NewZoomability);
         OtherLens.GetComponent<MouseUI> ().Zoomable = _NewZoomability;
     }
