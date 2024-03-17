@@ -1,15 +1,11 @@
+using System.Collections.Generic;
+
 using com.ganast.log.unity;
+
+using TMPro;
+
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
-
-
-//
-// TODO: MERGE WITH, or CLEARLY SEPARATE FROM, VlabXRInteractiveObject which should in turn extend or cooperate
-// with XRGrabInteractable or something (must combine functionality of grabbagles and not grabbables) !!! Good
-// idea seems to be extensions of XRBaseInteractable for clicks/turns, XRGrabInteractable for moving around and
-// combining, etc., each with its own event handling so that, as an added benefit, we won't have to manually set
-// up event callbacks to other handler scripts on each and every interactable.
-//
 
 namespace com.ganast.xr2learn.vlab {
 
@@ -18,6 +14,9 @@ namespace com.ganast.xr2learn.vlab {
      */
     [RequireComponent(typeof(InteractiveObject))]
     public class InteractiveObjectXRInteractable: XRBaseInteractable {
+
+        [SerializeField]
+        private Tags Tag;
 
         /**
          * 
@@ -55,6 +54,7 @@ namespace com.ganast.xr2learn.vlab {
         [SerializeField]
         private bool transposeRotation;
 
+
         /**
          * A target of type InteractiveObject, required for the operation of this script.
          */
@@ -63,7 +63,7 @@ namespace com.ganast.xr2learn.vlab {
         /**
          * 
          */
-        private string tooltip;
+        private string tooltipText;
 
         /**
          * 
@@ -94,19 +94,7 @@ namespace com.ganast.xr2learn.vlab {
 
             target = GetComponent<InteractiveObject>();
 
-            MouseUI mouseUI = GetComponent<MouseUI>();
-            if (mouseUI != null) {
-                // TODO: this is not quite right, the tooltip to be displayed for each object along with other
-                // information of this kind should be exposed by the object itself and, to add, not by a MouseUI
-                // component whose name refers to a certain functionality but by a tooltip data or general object
-                // data provider component with a proper API...
-                tooltip = MouseUI.AttributedName(mouseUI.Tag);
-
-                // TODO: create and initialize tooltip display billboard GUI structure...
-            }
-            else {
-                tooltip = "#" + name;
-            }
+            tooltipText = AttributedName(Tag);
         }
 
         /**
@@ -118,8 +106,15 @@ namespace com.ganast.xr2learn.vlab {
 
             Log.Message(this, "OnHoverEntered", "interactable: " + name + ", interactor: " + args.interactorObject.transform.name);
 
-            // TODO: display tooltip in world...
-            Log.Message(this, "OnHoverEntered", "tooltip: " + tooltip);
+            Log.Message(this, "OnHoverEntered", "tooltip: " + tooltipText);
+
+            TooltipManager.GetTooltipManager().SetTooltipText(tooltipText);
+            TooltipManager.GetTooltipManager().SetTooltipVisible(true);
+        }
+
+        protected override void OnHoverExited(HoverExitEventArgs args) {
+            base.OnHoverExited(args);
+            TooltipManager.GetTooltipManager().SetTooltipVisible(false);
         }
 
         /**
@@ -156,6 +151,8 @@ namespace com.ganast.xr2learn.vlab {
 
             base.OnSelectEntered(args);
 
+            TooltipManager.GetTooltipManager().Freeze();
+
             interactor = args.interactorObject;
 
             interactor.transform.GetComponent<XRInteractorLineVisual>().enabled = false;
@@ -191,12 +188,16 @@ namespace com.ganast.xr2learn.vlab {
             interactor.transform.GetComponent<XRInteractorLineVisual>().enabled = true;
 
             interactor = null;
+
+            TooltipManager.GetTooltipManager().Unfreeze();
         }
 
         /**
          * 
          */
         protected void Update() {
+
+            TooltipManager.GetTooltipManager().LookAt(Camera.main.transform);
 
             if (interactor != null) {
 
@@ -227,5 +228,76 @@ namespace com.ganast.xr2learn.vlab {
                 }
             }
         }
+
+        /* --- Tooltip-specific, original implementation by vzaf ----------------------------------------------- */
+
+        public static string AttributedName(Tags _NameTag) {
+            return NameAttribution[_NameTag].LanguageSpecificNames[(int) Specs.Language];
+        }
+
+        public enum Languages {
+            EN = 0,
+            GR = 1
+        }
+
+        public class OrdinaryNames {
+
+            public List<string> LanguageSpecificNames = new List<string>();
+
+            public OrdinaryNames(string _NameEn, string _NameGr) {
+                LanguageSpecificNames.Add(_NameEn);
+                LanguageSpecificNames.Add(_NameGr);
+            }
+        }
+
+        public enum Tags {
+            NonInteractive,
+            Erlenmeyer500ml,
+            HeatKnob,
+            StirKnob,
+            ACSwitch,
+            CeramicPlate,
+            LightIntensityKnob,
+            CondenserKnob,
+            RevolvingNosepiece,
+            Plug,
+            CoarseFocusKnob,
+            FineFocusKnob,
+            OcularKnob,
+            OcularLens,
+            SpecimenHolder,
+            StageKnob,
+            SpecimenHolderKnob,
+            Slide,
+            ApertureKnob,
+            CupboardDoor,
+            Drawer,
+            Cap
+        }
+
+        static readonly Dictionary<Tags, OrdinaryNames> NameAttribution = new Dictionary<Tags, OrdinaryNames> {
+            {Tags.NonInteractive, new OrdinaryNames(null,null)},
+            {Tags.Erlenmeyer500ml, new OrdinaryNames ("ERLENMEYER 500ml","йымийг жиакг 500ml")},
+            {Tags.HeatKnob, new OrdinaryNames ("HEAT KNOB","йовкиас хеяламсгс")},
+            {Tags.StirKnob, new OrdinaryNames ("STIR KNOB","йовкиас амадеусгс")},
+            {Tags.ACSwitch, new OrdinaryNames ("SWITCH","диайоптгс")},
+            {Tags.CeramicPlate, new OrdinaryNames ("CERAMIC PLATE","йеяалийг пкайа")},
+            {Tags.LightIntensityKnob, new OrdinaryNames ("LIGHT INTENSITY KNOB","йовкиас емтасгс жытос")},
+            {Tags.CondenserKnob, new OrdinaryNames ("CONDENSER KNOB","йовкиас сулпуймытг")},
+            {Tags.RevolvingNosepiece, new OrdinaryNames ("REVOLVING NOSEPIECE","пеяистяежолемг йежакг")},
+            {Tags.Plug, new OrdinaryNames ("PLUG","йакыдио")},
+            {Tags.CoarseFocusKnob, new OrdinaryNames("COARSE FOCUS KNOB", "адяос йовкиас")},
+            {Tags.FineFocusKnob, new OrdinaryNames("FINE FOCUS KNOB", "лийяолетяийос йовкиас")},
+            {Tags.OcularKnob, new OrdinaryNames ("OCULAR KNOB","пяосожхаклиос йовкиас")},
+            {Tags.OcularLens, new OrdinaryNames ("OCULAR LENS","пяосожхаклиос жайос")},
+            {Tags.SpecimenHolder, new OrdinaryNames ("SPECIMEN HOLDER", "одгцос деицлатос")},
+            {Tags.StageKnob, new OrdinaryNames ("STAGE KNOB","йовкиас тяапефас")},
+            {Tags.SpecimenHolderKnob, new OrdinaryNames ("SPECIMEN HOLDER KNOB","йовкиас одгцоу деицлатос")},
+            {Tags.Slide, new OrdinaryNames ("SPECIMEN","деицла")},
+            {Tags.ApertureKnob, new OrdinaryNames ("APERTURE KNOB","ловкос ияидас")},
+            {Tags.CupboardDoor, new OrdinaryNames ("CUPBOARD DOOR","поята мтоукапиоу")},
+            {Tags.Drawer, new OrdinaryNames ("DRAWER","суятаяи")},
+            {Tags.Cap, new OrdinaryNames ("CAP", "йапайи")}
+        };
     }
 }
