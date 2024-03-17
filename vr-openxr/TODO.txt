@@ -1,0 +1,22 @@
+V-Lab TODOs draft
+-----------------
+
+(in no particular order)
+
+- Improve tooltips placement and appearance.
+- Finalize approach on microscopy image placement and appearance.
+- Microscopy images inside oculars.
+- Animated hands.
+- Left controller.
+- Interaction visual prompts and, possible, feedback.
+- Integrate V-Lab grabbables into InteractiveObjectXRInteractable.
+- Optimize colliders and overall hovering, selecting and grabbing.
+- Pulsating tint visuals on hover.
+- Improve rendering performance within HDRP.
+- Test downgrading to SRP, both performance- and fidelity-wise.
+- Audio, incl. background, notifications, knob/switch feedback, collision sound, collision feedback.
+- Instructions notepad on desk in some nice form.
+- Teleportation over entire floor and removal of temporary targets currently in the scene.
+- Snap turning.
+- In-game UI, HUD-like, options may include restart scenario, instructions, credits, etc.
+- Consistent and complete logging.
