@@ -276,6 +276,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area Light roof (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -908,6 +913,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area Light roof (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -931,6 +941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 829290346663892501, guid: a5ed25f19c4c2e242af43d518c062c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3125623167012549398, guid: a5ed25f19c4c2e242af43d518c062c17,
         type: 3}
@@ -2468,6 +2483,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Area Light roof (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5667,6 +5687,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area Light roof (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6706,6 +6731,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Area Light roof (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7882,6 +7912,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Area Light roof (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9196,6 +9231,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 829290346663892501, guid: a5ed25f19c4c2e242af43d518c062c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3125623167012549398, guid: a5ed25f19c4c2e242af43d518c062c17,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9463,6 +9503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 829290346663892501, guid: a5ed25f19c4c2e242af43d518c062c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3125623167012549398, guid: a5ed25f19c4c2e242af43d518c062c17,
         type: 3}
@@ -13474,6 +13519,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Point Light (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5480458048930383841, guid: 12759f7ed96f8674e84d6d29e0c12abf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5550068921495301231, guid: 12759f7ed96f8674e84d6d29e0c12abf,
         type: 3}
       propertyPath: m_Intensity
@@ -15651,6 +15701,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Point Light (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480458048930383841, guid: 12759f7ed96f8674e84d6d29e0c12abf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5550068921495301231, guid: 12759f7ed96f8674e84d6d29e0c12abf,
         type: 3}
@@ -17946,6 +18001,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Point Light (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480458048930383841, guid: 12759f7ed96f8674e84d6d29e0c12abf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5550068921495301231, guid: 12759f7ed96f8674e84d6d29e0c12abf,
         type: 3}
@@ -24056,6 +24116,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area Light roof (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24290,6 +24355,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Area Light roof (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25813,6 +25883,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Point Light (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5480458048930383841, guid: 12759f7ed96f8674e84d6d29e0c12abf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5550068921495301231, guid: 12759f7ed96f8674e84d6d29e0c12abf,
         type: 3}
       propertyPath: m_Intensity
@@ -26802,6 +26877,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 829290346663892501, guid: a5ed25f19c4c2e242af43d518c062c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3125623167012549398, guid: a5ed25f19c4c2e242af43d518c062c17,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -27499,6 +27579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 829290346663892501, guid: a5ed25f19c4c2e242af43d518c062c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3125623167012549398, guid: a5ed25f19c4c2e242af43d518c062c17,
         type: 3}
@@ -30016,6 +30101,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Point Light (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5480458048930383841, guid: 12759f7ed96f8674e84d6d29e0c12abf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5550068921495301231, guid: 12759f7ed96f8674e84d6d29e0c12abf,
         type: 3}
       propertyPath: m_Intensity
@@ -30938,6 +31028,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 829290346663892501, guid: a5ed25f19c4c2e242af43d518c062c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3125623167012549398, guid: a5ed25f19c4c2e242af43d518c062c17,
         type: 3}
@@ -32380,6 +32475,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Point Light (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480458048930383841, guid: 12759f7ed96f8674e84d6d29e0c12abf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5550068921495301231, guid: 12759f7ed96f8674e84d6d29e0c12abf,
         type: 3}
@@ -36503,6 +36603,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Point Light (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5480458048930383841, guid: 12759f7ed96f8674e84d6d29e0c12abf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5550068921495301231, guid: 12759f7ed96f8674e84d6d29e0c12abf,
         type: 3}
       propertyPath: m_Intensity
@@ -36531,6 +36636,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube
+      objectReference: {fileID: 0}
+    - target: {fileID: 829290346663892501, guid: a5ed25f19c4c2e242af43d518c062c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3125623167012549398, guid: a5ed25f19c4c2e242af43d518c062c17,
         type: 3}
@@ -38644,6 +38754,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Area Light roof (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4669100731907707349, guid: 40aaf39db29296f479f6e06269de00e7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -40290,7 +40405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068453359}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.18300769, z: 0, w: 0.9831115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -40299,7 +40414,7 @@ Transform:
   - {fileID: 1071316245}
   - {fileID: 2004631217}
   m_Father: {fileID: 1424793487}
-  m_LocalEulerAnglesHint: {x: 0, y: -21.09, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2071019704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40941,6 +41056,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cube (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 829290346663892501, guid: a5ed25f19c4c2e242af43d518c062c17,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3125623167012549398, guid: a5ed25f19c4c2e242af43d518c062c17,
         type: 3}
