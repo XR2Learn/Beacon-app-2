@@ -50,6 +50,8 @@ dsmc2 AT eap DOT gr
 
 ## License
 
-V-Lab is free and open-source software. Source code is licensed under the MIT License. Media and other development assets in binary form are licensed under the Creative Commons attribution-NonCommercial-NoDerivatives 4.0 International license (CC BY-NC-ND 4.0). For more information please see the LICENSE file.
+V-Lab is free and open-source software. Original source code is licensed under the MIT License. Original media and other original development assets in binary form are licensed under the Creative Commons attribution-NonCommercial-NoDerivatives 4.0 International license (CC BY-NC-ND 4.0). For more information please see the LICENSE file. All third-party source code and assets licensed as described in respective README and/or license information files.
 
-Copyright (c) by Hellenic Open University, 2024.
+## Copyright
+
+Copyright (c) 2024 by Hellenic Open University.
