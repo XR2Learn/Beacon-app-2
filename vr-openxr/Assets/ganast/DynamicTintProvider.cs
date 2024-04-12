@@ -79,8 +79,6 @@ public class DynamicTintProvider: MonoBehaviour {
         }
 
         tinting = (hovered && !selected) || (selected && tintWhenSelected);
-        Debug.Log(tinting);
-        Debug.Log(selected + ", " + hovered + ", " + tinting);
 
         if (tinting) {
             if (animate) {
